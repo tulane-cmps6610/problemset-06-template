@@ -19,12 +19,12 @@ Place all written answers from `problemset-06.md` here for easier grading.
 
 
 
-- **2a.**
+- **2**
 
 
 
 
-- **2b.**
+- **3a.**
 
 
 
