@@ -1,10 +1,10 @@
-# CMPS 6610 Problem Set 06
+# CMPS 6610 Problem Set 6
 ## Answers
 
 **Name:**_________________________
 
 
-Place all written answers from `problemset-06.md` here for easier grading.
+Place all written answers from this assignment here for easier grading.
 
 
 
@@ -19,12 +19,12 @@ Place all written answers from `problemset-06.md` here for easier grading.
 
 
 
-- **2**
+- **2a.**
 
 
 
 
-- **3a.**
+- **2b.**
 
 
 

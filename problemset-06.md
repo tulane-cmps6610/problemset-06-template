@@ -1,60 +1,126 @@
 # CMPS 6610 Problem Set 6
 
-In this assignment we'll revisit some of the topics from our
-discussion of computational complexity and network flows. 
+In this assignment we'll look at randomness in computation, both in theory and in practice.
 
 **To make grading easier, please place all written solutions directly in `answers.md`, rather than scanning in handwritten work or editing this file.**
 
 All coding portions should go in `main.py` as usual.
 
 
-## Part 1: coNP
+## Part 1: Deviation from Expectations
 
-Recall that the class "NP" was defined as the set of decision problems for
-which, given a particular solution, we could efficiently check if
-it is a YES instance to the decision problem (e.g., "Is F a
-satisfiable Boolean formula?"). The complexity class "coNP" is the
-"complement" of NP. That is, a problem $X$ is in coNP if we can
-efficiently check that a candidate solution is a NO instance to
-$X$ (e.g. "Is F an unsatisfiable
-Boolean formula?"). 
+We learned that Quicksort takes $O(n \log n)$ expected
+work. A fair question is how tight that expectation is. Luckily we
+have some bounds that allow us to look at this question. For a random
+variable $X$, Markov's inequality states that:
 
-**1a)** Given a Boolean formula $F$ that is a 3-CNF (an AND of clauses with three
-literals in an OR), consider the Tautology (TAUT) problem of idenfying whether *every*
-assigment produces a value of TRUE. Show that TAUT is coNP-complete. 
+$$\mathbf{P}[X \geq \alpha] \leq \frac{\mathbf{E}[X]}{\alpha}$$
 
-**1b)** Prove that $P \subseteq coNP$.
-
-## Part 2: Hardness of Approximation
-
-Given an undirected, unweighted graph $G=(V, E)$, the \textit{Hamiltonian Path} (HP)
-problem asks us to find a path that visits every vertex in $G$ exactly
-once. This problem is very similar to the Traveling Salesperson
-Problem (TSP), except that we don't require a weighted graph, or a
-cycle as the solution. And as we might expect, HP is NP-complete.Interestingly, we can use this fact to prove
-that it is NP-hard to approximate TSP to within a factor of 2. Here,
-you must show that if it is possible to find a 2-approximation to TSP
-in polynomial time/work,
-then it is possible to solve HP in polynomial time/work as well.
-As a hint, the reduction will require you to construct a weighted
-graph (with cleverly chosen weights) given an input graph to HP. 
+**1a)** What is the probability that Quicksort does $\Omega({n^2})$
+  comparisons? 
+.  
+.  
+**enter answers in `answers.md`**
+.  
+.  
 
 
-## Part 3:  Network Flow for Bipartite Matching
+**1b)** What is the probability that Quicksort does $10^c n \ln n$
+comparisons, for a given $c>0$? What does this say about the
+"concentration" of the expected work for Quicksort?
+.  
+.  
+**enter answers in `answers.md`**
+.  
+.  
 
-A \textit{bipartite graph} $G=(A, B, E)$ with has the property that for every
-edge $(u, v)\in E$, $u\in A$ and $v\in B$. The \textit{bipartite
-matching} problem asks us to find a maximal set of edges with no
-redundant endpoints. 
 
-**3a)** Solve the bipartite matching problem using a reduction to
-network flow.
+## Part 2: From "Maybe" to "Definitely"
+
+At your new job designing
+algorithms for really hard problems, you're put to work solving
+problem $X$. Your predecessor has left you with an
+algorithm $\mathcal{A}$ for problem $X$ that has a deterministic
+worst-case work, but only produces the correct output with a certain
+ probability of success. Moreover, we can also check whether the correct
+result was produced with $O(W(n))$ work in the worst case.
+
+Let $\mathcal{A}(\mathcal{I})$ denote the output of an
+algorithm $\mathcal{A}$ on input $\mathcal{I}$. So $\mathcal{A}(\mathcal{I})$ has a probability of $\epsilon$ of being
+correct and a failure probability of $1-\epsilon$. Furthermore let
+$\mathcal{C}(\mathcal{A}(\mathcal{I}))$ denote the output of
+(deterministically) checking $\mathcal{A}$'s solution. 
+
+**2a)** You find that $\epsilon$ is too small to be reliable. You want to be able to have \emph{any} guaranteed success
+  probability $\delta$, for $\epsilon<\delta<1$. Use $\mathcal{A}$ to
+  construct an algorithm $\mathcal{A}'$, where
+  $\mathcal{A}'(\mathcal{I}, \delta)$ is the correct output with
+  probability $\delta$. It is sufficient to give a high level
+  description of $\mathcal{A}'$. What is
+  the work of $\mathcal{A}'$ in terms of $n$, $\delta$, and
+  $\epsilon$? (\textbf{Hint}: Each run of $\mathcal{A}$ is
+  independent and does not depend on previous runs.)  
+.  
+.  
+**enter answers in `answers.md`**
+.  
+.  
+
+**2b)** Your boss and co-workers are impressed, but you want to do
+  even better. Show how to convert $\mathcal{A}$ into an
+  algorithm that always produces the correct result, but has an
+  expected runtime that depends on $W(n)$ and the success probability
+  $\epsilon$.
+.  
+.  
+**enter answers in `answers.md`**
+.  
+.  
 
 
-**3b)** A \textit{perfect matching} in a bipartite graph is possible when $A$ and $B$ are
-the same size. Use your reduction above to characterize when the
-network flow solution returns a perfect matching.
+## Part 3: Determinism versus Randomization in Quicksort
 
-**3c)** A perfect matching is also possible in a standard unweighted graph $G=(V,
-E)$. Is it possible to identify a perfect matching in a standard graph using a
-reduction to network flow?
+In lecture we saw that adding a random choice of pivot reduced the
+probability of worst-case behavior for any given input in
+selection. Let's look at how pivot choices affect Quicksort. For this
+question, refer to the code in `main.py` 
+
+**3a)**
+
+Complete the implementations of `qsort` and `compare_sort` stubs. Feel
+free to take from code given in the lectures to  help you perform list
+partitioning. Note that the pivot choice function is input to `qsort`,
+so you will have to curry `qsort` to test different methods of
+choosing pivots. Implement variants of `qsort` that correspond to
+selecting the first element of the input list as the pivot, and to
+selecting a random pivot.
+.  
+.  
+.  
+.  
+
+
+**3b)**
+
+Compare running times using `compare-qsort` between variants of
+Quicksort and the
+provided implementation of selection sort (`ssort`). Perform two
+different comparisons: a comparison between sorting methods using
+random permutations of the specified sizes, and a comparison using
+already sorted permutations. How do the running times compare to the
+asymptotic bounds? How does changing the type of input list change the
+relative performance of these algorithms? Note that you may have to
+modify the list sizes based on your system memory; compare at least 10
+different list sizes. The `print_results` function in `main.py` gives
+a table of results, but feel free to use code from Lab 1 to plot
+the results as well. 
+
+**enter answers in `answers.md`**
+
+**3c)**
+
+Python uses a sorting algorithm called [*Timsort*](https://en.wikipedia.org/wiki/Timsort), designed by Tim Peters. Compare the fastest of your sorting implementations to the Python
+sorting function `sorted`, conducting the tests in 3b above. 
+
+**enter answers in `answers.md`**
+
