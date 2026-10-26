@@ -16,23 +16,23 @@ variable $X$, Markov's inequality states that:
 
 $$\mathbf{P}[X \geq \alpha] \leq \frac{\mathbf{E}[X]}{\alpha}$$
 
-**1a)** What is the probability that Quicksort does $\Omega({n^2})$
+**1a) (7 pts)** What is the probability that Quicksort does $\Omega({n^2})$
   comparisons? 
-.  
-.  
-**enter answers in `answers.md`**
-.  
-.  
+  .  
+  .  
+  **enter answers in `answers.md`**
+  .  
+  .  
 
 
-**1b)** What is the probability that Quicksort does $10^c n \ln n$
+**1b) (8 pts)** What is the probability that Quicksort does $10^c n \ln n$
 comparisons, for a given $c>0$? What does this say about the
 "concentration" of the expected work for Quicksort?
-.  
-.  
-**enter answers in `answers.md`**
-.  
-.  
+  .  
+  .  
+  **enter answers in `answers.md`**
+  .  
+  .  
 
 
 ## Part 2: From "Maybe" to "Definitely"
@@ -51,7 +51,7 @@ correct and a failure probability of $1-\epsilon$. Furthermore let
 $\mathcal{C}(\mathcal{A}(\mathcal{I}))$ denote the output of
 (deterministically) checking $\mathcal{A}$'s solution. 
 
-**2a)** You find that $\epsilon$ is too small to be reliable. You want to be able to have \emph{any} guaranteed success
+**2a) (10 pts)** You find that $\epsilon$ is too small to be reliable. You want to be able to have \emph{any} guaranteed success
   probability $\delta$, for $\epsilon<\delta<1$. Use $\mathcal{A}$ to
   construct an algorithm $\mathcal{A}'$, where
   $\mathcal{A}'(\mathcal{I}, \delta)$ is the correct output with
@@ -60,22 +60,22 @@ $\mathcal{C}(\mathcal{A}(\mathcal{I}))$ denote the output of
   the work of $\mathcal{A}'$ in terms of $n$, $\delta$, and
   $\epsilon$? (\textbf{Hint}: Each run of $\mathcal{A}$ is
   independent and does not depend on previous runs.)  
-.  
-.  
-**enter answers in `answers.md`**
-.  
-.  
+  .  
+  .  
+  **enter answers in `answers.md`**
+  .  
+  .  
 
-**2b)** Your boss and co-workers are impressed, but you want to do
+**2b) (10 pts)** Your boss and co-workers are impressed, but you want to do
   even better. Show how to convert $\mathcal{A}$ into an
   algorithm that always produces the correct result, but has an
   expected runtime that depends on $W(n)$ and the success probability
   $\epsilon$.
-.  
-.  
-**enter answers in `answers.md`**
-.  
-.  
+  .  
+  .  
+  **enter answers in `answers.md`**
+  .  
+  .  
 
 
 ## Part 3: Determinism versus Randomization in Quicksort
@@ -85,24 +85,20 @@ probability of worst-case behavior for any given input in
 selection. Let's look at how pivot choices affect Quicksort. For this
 question, refer to the code in `main.py` 
 
-**3a)**
-
-Complete the implementations of `qsort` and `compare_sort` stubs. Feel
+**3a) (5 pts)** Complete the implementations of `qsort` and `compare_sort` stubs. Feel
 free to take from code given in the lectures to  help you perform list
 partitioning. Note that the pivot choice function is input to `qsort`,
 so you will have to curry `qsort` to test different methods of
 choosing pivots. Implement variants of `qsort` that correspond to
 selecting the first element of the input list as the pivot, and to
 selecting a random pivot.
-.  
-.  
-.  
-.  
+  .  
+  .  
+  .  
+  .  
 
 
-**3b)**
-
-Compare running times using `compare-qsort` between variants of
+**3b) (5 pts)** Compare running times using `compare-qsort` between variants of
 Quicksort and the
 provided implementation of selection sort (`ssort`). Perform two
 different comparisons: a comparison between sorting methods using
@@ -115,12 +111,10 @@ different list sizes. The `print_results` function in `main.py` gives
 a table of results, but feel free to use code from Lab 1 to plot
 the results as well. 
 
-**enter answers in `answers.md`**
+  **enter answers in `answers.md`**
 
-**3c)**
-
-Python uses a sorting algorithm called [*Timsort*](https://en.wikipedia.org/wiki/Timsort), designed by Tim Peters. Compare the fastest of your sorting implementations to the Python
+**3c) (5 pts)** Python uses a sorting algorithm called [*Timsort*](https://en.wikipedia.org/wiki/Timsort), designed by Tim Peters. Compare the fastest of your sorting implementations to the Python
 sorting function `sorted`, conducting the tests in 3b above. 
 
-**enter answers in `answers.md`**
+  **enter answers in `answers.md`**
 
